@@ -5,7 +5,7 @@ public class BankAccount {
     private String accountNumber;
     private double balance;
     private List<Transaction> transactions;
-
+    // Remove Setting Method
     private BankAccount(String accountNumber) {
         this.accountNumber = accountNumber;
         this.balance = 0;
@@ -25,17 +25,19 @@ public class BankAccount {
     }
 
     public void withdrawMoney(Transaction transaction) throws NotEnoughFundsException {
+        //Replace Parameter with Method Call
         if (getBalance() < transaction.getAmount()) {
+            //Separate Query from Modifier
             throw new NotEnoughFundsException("Account does not have enough funds");
         }
         balance -= transaction.getAmount();
         addTransaction(transaction);
     }
-
+    // Hide Method
     private void addTransaction(Transaction transaction) {
         transactions.add(transaction);
     }
-
+    // Replace Constructor with Factory Method
     public static BankAccount createAccount(String accountNumber) {
         return new BankAccount(accountNumber);
     }
